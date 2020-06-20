@@ -30,7 +30,9 @@ const LeftMenu = () => {
         }
       >
         <MenuItemGroup title='Nạp tiền'>
-          <Menu.Item key='setting:1'>Nạp tiền nội bộ</Menu.Item>
+          <Menu.Item key='setting:1'>
+            <Link to={'/deposit'}>Nạp tiền nội bộ</Link>
+            </Menu.Item>
         </MenuItemGroup>
         <MenuItemGroup title='Tạo tài khoản'>
           <Menu.Item key='setting:2'>

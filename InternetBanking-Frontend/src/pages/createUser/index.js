@@ -19,34 +19,20 @@ const tailLayout =[ {
 }];
 
 
-const token=localStorage.getItem('access-token')
   const NewUser = () => {
-    const onFinish = values => {
-      
-      axios({
-        method: 'post',
-        url: 'http://localhost:8080/employee/createUser',
-        data: values,
-        headers: {
-          'access-token':token,
-        }
-      }).then((response) => {
-         alert("Tạo thành công!")
-      }).catch((err) => {
-        console.log(err)
-      });
-      document.querySelector('#createuser_name').value="";
-      document.querySelector('#createuser_email').value="";
-      document.querySelector('#createuser_phone').value="";
-      document.querySelector('#createuser_pin').value="";
-      document.querySelector('#createuser_password').value="";
-    };
-    
+    const [form] = Form.useForm()
+    const onFinish = async (values) => {
+      const data=await REST_API.createUser(values);
+      console.log(data)
+      form.resetFields();
+    }
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
     };
+   
     return(
-
+      
+      
       <Form
           
           {...layout}
@@ -57,8 +43,9 @@ const token=localStorage.getItem('access-token')
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-         
+          form={form}
         >
+          
           <Form.Item
             label="Name"
             name="name"

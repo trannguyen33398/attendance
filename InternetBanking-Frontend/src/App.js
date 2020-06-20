@@ -16,7 +16,7 @@ import LoginPage from './pages/login'
 import ForgotPassword from './pages/forgotPassword'
 import ListAccount from './pages/listAccount'
 import NewUser from './pages/createUser'
-
+import Deposit from './pages/deposit'
 const { Header, Content, Footer } = Layout
 
 const App = () => {
@@ -82,6 +82,16 @@ const App = () => {
                 render={(props) => {
                   return localStorage.getItem('loggedIn') === 'true' ? (
                     <NewUser {...props} />
+                  ) : (
+                    <LoginPage {...props} />
+                  )
+                }}
+              ></Route>
+              <Route
+                path='/deposit'
+                render={(props) => {
+                  return localStorage.getItem('loggedIn') === 'true' ? (
+                    <Deposit {...props} />
                   ) : (
                     <LoginPage {...props} />
                   )

@@ -30,7 +30,7 @@ class API {
     this.changePassword = this.changePassword.bind(this)
     this.forgotPassword = this.forgotPassword.bind(this)
     this.createUser = this.createUser.bind(this)
-    
+    this.deposit = this.deposit.bind(this);
   }
   
 
@@ -177,8 +177,25 @@ class API {
       })
   }
   createUser = async (info)=>{
+    console.log(info)
     return await this.instance
-    .get(`/employee/createUser`,{info})
+    .post(`/employee/createUser`,info)
+    .then((response) => {
+      return response.data || error_exception()
+    })
+    .catch((error) => {
+      if (error.response) {
+        return error.response.data || error_exception()
+      } else {
+        console.log(error)
+        return error_exception()
+      }
+    })
+  }
+  deposit = async (info)=>{
+    console.log(info)
+    return await this.instance
+    .post(`/employee/deposit`,info)
     .then((response) => {
       return response.data || error_exception()
     })
